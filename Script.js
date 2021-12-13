@@ -1,6 +1,3 @@
-a = "https://www.animemovil2.com/ver/kawaikereba";
-
-
 var bird = document.getElementById("flappy");
 var contador = document.getElementById("contador");
 var block0 = document.getElementById("block0");
