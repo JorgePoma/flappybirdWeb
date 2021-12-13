@@ -1,0 +1,77 @@
+body{
+  background-image: url("img/background.png");
+  background-repeat: no-repeat;
+  background-size: cover;
+  position: fixed;
+  top:0;
+  left:0;
+  bottom:0;
+  right:0;
+  height:100%;
+  width:100%;
+}
+.box{
+  position: relative;
+}
+.touch{
+  position: fixed;
+  z-index: 3;
+  top:0;
+  left:0;
+  bottom:0;
+  right:0;
+  height:100%;
+  width:100%;
+  
+  text-align: center;
+  font-size: 10em;
+  padding-top: 50%;
+  color: whitesmoke;
+  text-shadow: 5px 5px 0px black;
+}
+#flappy{
+  position: fixed;
+  bottom:60%;
+  left: 45%;
+  z-index: -1;
+}
+.blocks{
+  position: absolute;
+  z-index: -2;
+}
+#block0{
+  position: fixed;
+  left: 100%;
+}
+#block1 {
+  position: fixed;
+  left: 175%;
+}
+#block2 {
+  position: fixed;
+  left: 250%;
+}
+.floor{
+  position: fixed;
+  top: 85%;
+  left: 0;
+  bottom: 0;
+  right: 0;
+  width: 100%;
+  height: 100%;
+  background: #E3FEA2;
+}
+.terrain{
+  position: fixed;
+  top: 83%;
+  left: -1%;
+  bottom: 0;
+  right: 0;
+  width: 110%;
+  height: 3%;
+  background: repeating-linear-gradient(225deg, #7BD23D 60px, #378400 80px);
+}
+.b0,.b1,.b2{
+  position: relative;
+  top: 100px;
+}
