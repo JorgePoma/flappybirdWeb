@@ -57,7 +57,7 @@ function bajar() {
     vAux = 0;
     bird.style.bottom = pos + "%";
     bird.style.transform = "rotate("+335+"deg)";
-    aux+=0.2;
+    aux+=0.3;
     angulo=335;
   } else {
     salto = false;
@@ -117,4 +117,9 @@ function moverGround(){
 function genTubos(b){
   var t = Math.ceil((Math.random() * 51) + 40);
   b.style.top = (-1*(t-20)) + "%";
+}
+function morir(x) {
+  if (x) {
+    
+  }
 }
