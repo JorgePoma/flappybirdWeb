@@ -29,8 +29,12 @@ function Iniciar() {
     contador.innerHTML = arrC[cont];
     cont += 1;
   } else {
+    cont = 0;
+    contador.style.fontSize = 3+"em";
+    contador.style.paddingTop = 2+"%";
+    contador.innerHTML = cont;
     clearInterval(juego);
-    var sb = setInterval(bajar, 20);
+    sb = setInterval(bajar, 20);
   }
 }
 var angulo = 360;
@@ -39,6 +43,7 @@ var vAux =0;
 function bajar() {
   moverObs();
   moverGround();
+  
   if (pos != 0 && salto == false) {
     //acelerar bajada
     pos -= aceleracion(vAux);
@@ -50,8 +55,14 @@ function bajar() {
       angulo+=aceleracion(aAux);
     }
     bird.style.transform = "rotate("+angulo+"deg)";
-  } else if (aux <= 2 && salto == true)
-  {
+    if (pos <= 16) {
+      var repetir = confirm("perdiste : puntuacion "+cont);
+      clearInterval(sb);
+      if (repetir || !repetir) {
+        location.reload();
+      }
+    }
+  } else if (aux <= 2 && salto == true){
     pos += subida(aux);
     aAux = 0;
     vAux = 0;
@@ -78,9 +89,14 @@ function subida(x){
 function subir() {
   salto = true;
 }
+
 var posAux1=100;
 var posAux2=150;
 var posAux3=200;
+
+paso1 = genTubos(block0);
+paso2 = genTubos(block1);
+paso3 = genTubos(block2);
 
 function moverObs(){
     posAux1 -= 0.5; 
@@ -91,16 +107,19 @@ function moverObs(){
     block2.style.left = posAux3 + "%";
     if (posAux1 == 0) {
       posAux3 = 100;
-      genTubos(block2);
+      paso3 = genTubos(block2);
     }
     if (posAux2 == 0) {
       posAux1 = 100;
-      genTubos(block0);
+      paso1 = genTubos(block0);
     }
     if (posAux3 == 0) {
       posAux2 = 100;
-      genTubos(block1);
+      paso2 = genTubos(block1);
     }
+    colision(posAux1, pos, paso1);
+    colision(posAux2, pos, paso2);
+    colision(posAux3, pos, paso3);
 }
 
 var groundAux = 0;
@@ -113,13 +132,35 @@ function moverGround(){
     groundAux = 0;
   }
 }
-//max top 90% min top 40%
+//max top 70% min top 20%
 function genTubos(b){
-  var t = Math.ceil((Math.random() * 51) + 40);
-  b.style.top = (-1*(t-20)) + "%";
+  var t = Math.ceil((Math.random() * 51) + 20);
+  b.style.top = (-1*(t)) + "%";
+  return t;
 }
-function morir(x) {
-  if (x) {
-    
+
+function colision(posAux, pos, paso){
+  if (posAux == 45 || posAux == 55 ){ 
+    //console.log(paso+17);
+    //console.log("pajaro "+ pos);
+    //console.log(paso);
+    if(pos < paso) {
+      console.log("perdiste!!");
+      var repetir2 = confirm("perdiste : puntuacion "+cont);
+      clearInterval(sb);
+      if (repetir2 || !repetir2) {
+        location.reload();
+      }
+    }else if(pos > paso+17){
+      console.log("perdiste!!");
+      var repetir3 = confirm("perdiste : puntuacion "+cont);
+      clearInterval(sb);
+      if (repetir3 || !repetir3) {
+        location.reload();
+      }
+    }else if(posAux == 55){
+      cont +=1;
+      contador.innerHTML = cont;
+    }
   }
 }
